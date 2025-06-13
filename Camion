@@ -1,0 +1,43 @@
+<?php
+cLass Camion extends RegistroVehiculo {
+    //atributos
+    private float $peso;
+    private int $cantEjes;
+    //metodo constructor
+    public function __construct(string $patente, float $peso, int $cantEjes) {
+        parent::__construct($patente);
+        $this -> peso = $peso;
+        $this -> cantEjes = $cantEjes;
+    }
+    //metodos de acceso get
+    public function getPeso(): float { return $this -> peso; }
+    public function getCantEjes(): int { return $this -> cantEjes; }
+    //metodos de acceso set
+    public function setPeso(float $peso): void { $this -> peso = $peso; }
+    public function setCantEjes(int $cantEjes): void { $this -> cantEjes = $cantEjes; }
+
+    //metodo para calcular el costo del peaje
+    public function valorPeaje(): float {
+        $basePeaje = 20; // valor base del peaje
+        $adicional = ($this -> getCantEjes() * 100) + ($this -> getPeso() * 15);//costo adicional por eje y por peso
+        if ($this -> getPeso() < 5) {
+            $impuesto = 0.02; //impuesto 2% menos de 5 toneladas
+        } else {
+            $impuesto = 0.05; //impuesto 5% mas de 5 toneladas
+        }
+        $total = $basePeaje + $adicional + ($basePeaje * $impuesto);
+        return $total;
+    }
+    //metodo __toString
+    public function __toString(): string {
+        $cadena = (
+            parent::__toString(
+                "Camion: " . $this -> getPatente() . "\n" .
+                "Peso: " . $this -> getPeso() . " toneladas\n" .
+                "Cantidad de ejes: " . $this -> getCantEjes() . "\n" .
+                "Valor del peaje: $" . $this -> valorPeaje()
+            )
+        );
+        return $cadena;
+    }
+}

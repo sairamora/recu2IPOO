@@ -1,0 +1,18 @@
+<?php
+cLass RegistroVehiculo{
+    //variables instancia
+    private string $patente;
+    private int $basePeaje = 20; // valor base del peaje
+    //metodo constructor
+    public function __construct(string $patente){
+        $this -> patente = $patente;
+    }
+    //metodos de acceso get
+    public function getPatente(): string { return $this -> patente;}
+    //metodos de acceso set
+    public function setPatente(string $patente): void { $this -> patente = $patente; }
+    //metodo para calcular el costo del peaje
+    public function valorPeaje(): float {
+        return $this -> basePeaje;
+    }
+}

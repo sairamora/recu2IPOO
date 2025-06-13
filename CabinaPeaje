@@ -18,11 +18,11 @@ cLass CabinaPeaje{
     public function __toString(): string {
         $cadena = "CADENA DE PEAJE\n" .
         "Vehiculos registrados:";
-        foreach ($this -> regVehiculos as $vehiculo) {
+        foreach ($this -> getRegVehiculos() as $vehiculo) {
             $cadena .= $vehiculo . "\n";
         }
         $cadena .= "Recibos:\n";
-        foreach ($this -> recibos as $recibo) {
+        foreach ($this -> getRecibos() as $recibo) {
             $cadena.= $vehiculo . "\n";
         }
         return $cadena;
