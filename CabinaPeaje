@@ -26,5 +26,62 @@ cLass CabinaPeaje{
             $cadena.= $vehiculo . "\n";
         }
         return $cadena;
-    }    
+    }
+    //metodo que retorna el recibo de peaje
+    public function cobrarPeaje($unTipoInfoVehiculo, $info) {
+        //verifica el tipo de vehiculo y crea segun corresponda
+        switch ($unTipoInfoVehiculo) {
+            case 'Camion':
+                $vehiculo = new Camion($info['patente'], $info['peso'], $info['cantEjes']);
+                break;
+            case 'Transporte escolar':
+                $vehiculo = new TransporteEscolar($info['patente'], $info['capacidadMax']);
+                break;
+            case 'Vehiculo particular':
+                $vehiculo = new RegistroVehiculo($info['patente']);
+                break;
+            default:
+                throw new Exception("Tipo de vehiculo no reconocido");
+        }
+        $valorPeaje = $vehiculo -> valorPeaje();
+        $fecha = date('Y-m-d');
+        $hora = date('H:i:s');
+        $numeroRecibo = count($this -> getRecibos()) + 1;
+        //crea un nuevo recibo
+        $recibo = new Recibo($numeroRecibo, $valorPeaje, $fecha, $hora, $vehiculo);
+        //setea el recibo y el vehiculo en la cabina de peaje
+        $this -> setRecibos($recibo);
+        $this -> setRegVehiculos($vehiculo);
+        return $recibo;
+    }
+    //metodo que retorna el recibo con mayor valor para una fecha dada
+    public function reciboMayorMonto($fecha) {
+        $mayorValor = 0;
+        $reciboMayor = null;
+        foreach ($this -> getRecibos() as $recibo) {
+            if ($recibo -> getFecha() === $fecha && $recibo -> getValor() > $mayorValor) {
+                $mayorValor = $recibo -> getValor();
+                $reciboMayor = $recibo;
+            }
+        }
+        return $reciboMayor;
+    }
+    public function recaudacionXTipoVehiculo($fecha, $tipoRegistroVehiculo) {
+        $total = 0;
+        foreach ($this -> getRecibos() as $recibo) {
+            if ($recibo -> getFecha() === $fecha && get_class($recibo -> objVehiculo) === $tipoRegistroVehiculo) {
+                $total += $recibo -> getValor();
+            }
+        }
+        return $total;
+    }
+    public function totalRecaudado($fecha) {
+        $total = 0;
+        foreach ($this -> getRecibos() as $recibo) {
+            if ($recibo -> getFecha() === $fecha) {
+                $total += $recibo -> getValor();
+            }
+        }
+        return $total;
+    }
 }
