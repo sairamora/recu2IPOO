@@ -1,0 +1,28 @@
+<?php
+cLass TransporteEscolar extends RegistroVehiculo {
+    //atributos
+    private int $capacidadMax;
+    //metodo constructor
+    public function __construct(string $patente, int $capacidadMax) {
+        parent::__construct($patente);
+        $this -> capacidadMax = $capacidadMax;
+    }
+    //metodos de acceso get
+    public function getCapacidadMax(): int { return $this -> capacidadMax; }
+    //metodos de acceso set
+    public function setCapacidadMax(int $capacidadMax): void { $this -> capacidadMax = $capacidadMax; }
+    //metodo para calcular el costo del peaje
+    public function valorPeaje(): float {
+        $basePeaje = 20; // valor base del peaje
+        $adicional = 25 * $this -> getCapacidadMax(); // costo adicional por capacidad
+        $total = $basePeaje + $adicional;
+        return $total;
+    }
+    //metodo __toString
+    public function __toString(): string {
+        return parent::__toString() .
+                "Transporte Escolar: " . $this -> getPatente() . "\n" .
+                "Capacidad Maxima: " . $this -> getCapacidadMax() . "\n" .
+                "Valor del peaje: $" . $this -> valorPeaje();
+    }
+}

@@ -2,7 +2,6 @@
 cLass RegistroVehiculo{
     //variables instancia
     private string $patente;
-    private int $basePeaje = 20; // valor base del peaje
     //metodo constructor
     public function __construct(string $patente){
         $this -> patente = $patente;
@@ -13,6 +12,14 @@ cLass RegistroVehiculo{
     public function setPatente(string $patente): void { $this -> patente = $patente; }
     //metodo para calcular el costo del peaje
     public function valorPeaje(): float {
-        return $this -> basePeaje;
+        $valorPeaje = 20; // valor base del peaje
+        return $valorPeaje;
+    }
+    //metodo __toString
+    public function __toString(): string {
+        $cadena = ("Patente Vehiculo: " . $this -> getPatente() . "\n" .
+                  "Valor del peaje: $" . $this -> valorPeaje()
+        );
+        return $cadena;
     }
 }
