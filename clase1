@@ -1,0 +1,30 @@
+<?php
+cLass CabinaPeaje{
+    //variables instancia
+    private $recibos;
+    private $regVehiculos;
+    //metodo constructor
+    public function __construct() {
+        $this -> recibos = [];
+        $this -> regVehiculos = [];
+    }
+    //metodos de acceso get
+    public function getRecibos() { return $this -> recibos; }
+    public function getRegVehiculos() { return $this -> regVehiculos; }
+    //metodos de acceso set
+    public function setRecibos($recibo) { $this -> recibos[] = $recibo; }
+    public function setRegVehiculos($vehiculo) { $this -> regVehiculos[] = $vehiculo; }
+    //metodo __toString
+    public function __toString() {
+        $cadena = "CADENA DE PEAJE\n" .
+        "Vehiculos registrados:";
+        foreach ($this -> regVehiculos as $vehiculo) {
+            $cadena .= $vehiculo . "\n";
+        }
+        $cadena .= "Recibos:\n";
+        foreach ($this -> recibos as $recibo) {
+            $cadena.= $vehiculo . "\n";
+        }
+        return $cadena;
+    }    
+}

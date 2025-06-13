@@ -1,0 +1,13 @@
+<?php
+cLass Clase4{
+    //atributos
+
+    //metodo constructor
+
+    //metodos de acceso get
+
+    //metodos de acceso set
+
+    //metodo __toString
+
+}
