@@ -1,0 +1,29 @@
+<?php
+cLass Recibo{
+    //variables instancia
+    private $numero;
+    private $valor;
+    private $fecha;
+    private $hora;
+    private $objVehiculo; //referencia al registro del vehiculo
+    //metodo constructor
+    public function __construct(int $numero, float $valor, string $fecha, string $hora, $objVehiculo) {
+        $this -> numero = $numero;
+        $this -> valor = $valor;
+        $this -> fecha = $fecha;
+        $this -> hora = $hora;
+        $this -> objVehiculo = $objVehiculo;
+    }
+    //metodos de acceso get
+    public function getNumero(): int { return $this -> numero; }
+    public function getValor(): float { return $this -> valor; }
+    public function getFecha(): string { return $this -> fecha; }
+    public function getHora(): string { return $this -> hora; }
+    public function getObjVehiculo() { return $this -> objVehiculo; }
+    //metodos de acceso set
+    public function setNumero(int $numero): void { $this -> numero = $numero; }
+    public function setValor(float $valor): void { $this -> valor = $valor; }
+    public function setFecha(string $fecha): void { $this -> fecha = $fecha; }
+    public function setHora(string $hora): void { $this -> hora = $hora; }
+    public function setObjVehiculo($objVehiculo): void { $this -> objVehiculo = $objVehiculo; }
+}

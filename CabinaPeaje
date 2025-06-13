@@ -9,13 +9,13 @@ cLass CabinaPeaje{
         $this -> regVehiculos = [];
     }
     //metodos de acceso get
-    public function getRecibos() { return $this -> recibos; }
-    public function getRegVehiculos() { return $this -> regVehiculos; }
+    public function getRecibos(): array { return $this -> recibos; }
+    public function getRegVehiculos(): array { return $this -> regVehiculos; }
     //metodos de acceso set
-    public function setRecibos($recibo) { $this -> recibos[] = $recibo; }
-    public function setRegVehiculos($vehiculo) { $this -> regVehiculos[] = $vehiculo; }
+    public function setRecibos($recibo): void { $this -> recibos[] = $recibo; }
+    public function setRegVehiculos($vehiculo): void { $this -> regVehiculos[] = $vehiculo; }
     //metodo __toString
-    public function __toString() {
+    public function __toString(): string {
         $cadena = "CADENA DE PEAJE\n" .
         "Vehiculos registrados:";
         foreach ($this -> regVehiculos as $vehiculo) {
