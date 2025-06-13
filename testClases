@@ -21,15 +21,12 @@ $cadena = (
 echo $cadena;
 
 //PUNTO 11
-$fecha = "2025/06/13";
-$hora = "15:00:00";
-
 $recibo1 = $cabina -> cobrarPeaje('Camion', ['patente' => 'SEC120', 'peso' => 7000, 'cantEjes' => 3]);
 $recibo2 = $cabina -> cobrarPeaje('Transporte escolar', ['patente' => 'CAB456', 'capacidadMax' => 12]);
 $recibo3 = $cabina -> cobrarPeaje('Vehiculo particular', ['patente' => 'ZOS010']);
 
-$mayorRecibo = $cabina -> reciboMayorMonto($recibo1 -> getFecha());
-$total = $cabina -> totalRecaudado($recibo1 -> getFecha());
+$mayorRecibo = $cabina -> reciboMayorMonto("15/06/2024");
+$total = $cabina -> totalRecaudado("15/06/2024");
 
 $cadena2 = (
     "Recibo con mayor monto del dia: " . $mayorRecibo . "\n" .
